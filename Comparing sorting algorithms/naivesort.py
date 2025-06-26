@@ -1,6 +1,10 @@
 import time
 
 class NaiveSort():
+    '''
+    A very naive sorting method where the minimum value of the array is recursively
+    added to a new list and removed from the original.
+    '''
     def __init__(self, arr: list[int]):
         self.arr: list[int] = arr
         self.time_taken: float = -1
