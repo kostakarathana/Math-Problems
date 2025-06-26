@@ -1,47 +1,54 @@
 from quicksort import QuickSort
 from standardsort import StandardSort
+from naivesort import NaiveSort
 import random as r
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     low = 1
-    high = 5000
+    high = 500
     step = 1
+
+    NUM_TRIALS = 100
     qs_times: list[float] = []
     std_times: list[float] = []
+    naive_times: list[float] = []
 
     for i in range(low, high, step):
-        randlist1 = [r.randint(1,10000) for _ in range(i)]
-        randlist2 = [r.randint(1,10000) for _ in range(i)]
-        randlist3 = [r.randint(1,10000) for _ in range(i)]
+        qs_total: float = 0.0
+        std_total: float = 0.0
+        naive_total: float = 0.0
 
-        quicksort1: QuickSort = QuickSort(randlist1)
-        quicksort1.sort(True)
-        stdsort1: StandardSort = StandardSort(randlist1)
-        stdsort1.sort(True)
- 
-        quicksort2: QuickSort = QuickSort(randlist2)
-        quicksort2.sort(True)
-        stdsort2: StandardSort = StandardSort(randlist2)
-        stdsort2.sort(True)
+        for _ in range(NUM_TRIALS):
+            randlist = [r.randint(1, 10000) for _ in range(i)]
 
-        quicksort3: QuickSort = QuickSort(randlist3)
-        quicksort3.sort(True)
-        stdsort3: StandardSort = StandardSort(randlist3)
-        stdsort3.sort(True)
+            quicksort = QuickSort(randlist.copy())
+            quicksort.sort(True)
+            qs_total += quicksort.return_time_taken()*1000 # milliseconds
 
+            stdsort = StandardSort(randlist.copy())
+            stdsort.sort(True)
+            std_total += stdsort.return_time_taken()*1000 
 
-        qs_average = (quicksort1.return_time_taken() + quicksort2.return_time_taken() + quicksort3.return_time_taken())
-        std_average = (stdsort1.return_time_taken() + stdsort2.return_time_taken() + stdsort3.return_time_taken())
-        qs_times.append(qs_average)
-        std_times.append(std_average)
+            naivesort = NaiveSort(randlist.copy())
+            naivesort.sort(True)
+            naive_total += naivesort.return_time_taken()*1000 
+
+        qs_times.append(qs_total / NUM_TRIALS)
+        std_times.append(std_total / NUM_TRIALS)
+        naive_times.append(naive_total / NUM_TRIALS)
+
         print(f"{i}/{high}")
-    
 
-    plt.plot(qs_times, label="QuickSort")
-    plt.plot(std_times, label="StandardSort")
-    plt.legend()
-    plt.show()
+    plt.plot(range(low, high, step), qs_times, label="QuickSort") #type: ignore
+    plt.plot(range(low, high, step), std_times, label="StandardSort")#type: ignore
+    plt.plot(range(low, high, step), naive_times, label="NaiveSort")#type: ignore
+    plt.yscale('log') #type: ignore
+    plt.xlabel('List Size') #type: ignore
+    plt.ylabel('Milliseconds Taken (log scale)') #type: ignore
+    plt.legend() #type: ignore
+    plt.show() #type: ignore
+
 
 
     
