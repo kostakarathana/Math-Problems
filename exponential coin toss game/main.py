@@ -42,7 +42,7 @@ class CoinTossGame:
 
 if __name__ == "__main__":
     record: list[int] = []
-    iterations = 1_000_000_0
+    iterations = 1000000
     for i in range(iterations):
         if i % (iterations/100) == 0:
             print(f"{100*i/(iterations)}%")
@@ -83,7 +83,7 @@ if __name__ == "__main__":
         Average profit with $7 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-7}
         Average profit with $8 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-8}
         Average profit with $9 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-9}
-        Average profit with $10 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-10}
+        Average profit with $20 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-20}
         -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*        
           ''')
     
