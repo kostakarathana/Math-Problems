@@ -1,6 +1,6 @@
 '''
 This is a game where a fair coin is flipped n times until it lands on heads. When it does
-land on heads, you get 2^n dollars as a prize. The game costs money to opt in, so how much 
+land on heads, you get 2^n dollars as a prize. The game costs money to opt in, so whats the most
 would you opt in to play?
 '''
 
@@ -42,7 +42,7 @@ class CoinTossGame:
 
 if __name__ == "__main__":
     record: list[int] = []
-    iterations = 1_000_000_000
+    iterations = 1_000_000_0
     for i in range(iterations):
         if i % (iterations/100) == 0:
             print(f"{100*i/(iterations)}%")
@@ -64,7 +64,26 @@ if __name__ == "__main__":
         Odds of winning more than $1000 : {round(100*len([r for r in record if r >=  1000])/iterations,3)}%
         Odds of winning exactly $2: {round(100*len([r for r in record if r ==  2])/iterations,3)}%
         ------
-        Average win (any events < 1% chance cut out) : $ {round(sum([r for r in record if r < 128])/len([r for r in record if r < 128]),3)}
+        Chance of winning money if you bet $2 : {round(100*len([r for r in record if r >  2])/iterations,3)}%
+        Chance of winning money if you bet $4 : {round(100*len([r for r in record if r >  4])/iterations,3)}%
+        Chance of winning money if you bet $6 : {round(100*len([r for r in record if r >  6])/iterations,3)}%
+        Chance of winning money if you bet $8 : {round(100*len([r for r in record if r >  8])/iterations,3)}%
+        Chance of winning money if you bet $10 : {round(100*len([r for r in record if r >  10])/iterations,3)}%
+        Chance of winning money if you bet $20 : {round(100*len([r for r in record if r >  20])/iterations,3)}%
+        
+        ------
+        Average win (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)}
+        ------
+        Average profit with $1 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-1}
+        Average profit with $2 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-2}
+        Average profit with $3 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-3}
+        Average profit with $4 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-4}
+        Average profit with $5 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-5}
+        Average profit with $6 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-6}
+        Average profit with $7 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-7}
+        Average profit with $8 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-8}
+        Average profit with $9 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-9}
+        Average profit with $10 bet (any events < 0.01% chance cut out) : $ {round(sum([r for r in record if r < 8192])/len([r for r in record if r < 128]),3)-10}
         -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*        
           ''')
     
