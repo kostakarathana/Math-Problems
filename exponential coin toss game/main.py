@@ -42,10 +42,10 @@ class CoinTossGame:
 
 if __name__ == "__main__":
     record: list[int] = []
-    iterations = 1000000
+    iterations = 1_000_000_000
     for i in range(iterations):
-        if i % (iterations/10) == 0:
-            print(f"{i/(iterations/10)}")
+        if i % (iterations/100) == 0:
+            print(f"{100*i/(iterations)}%")
         game = CoinTossGame()
         record.append(game.play_game())
 
@@ -65,6 +65,7 @@ if __name__ == "__main__":
         Odds of winning exactly $2: {round(100*len([r for r in record if r ==  2])/iterations,3)}%
         ------
         Average win (any events < 1% chance cut out) : $ {round(sum([r for r in record if r < 128])/len([r for r in record if r < 128]),3)}
+        -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*        
           ''')
     
     
