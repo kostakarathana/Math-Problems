@@ -1,9 +1,6 @@
 import random
 import matplotlib.pyplot as plt
 
-# Set random seed ONCE
-random.seed(42)
-
 class RouletteWheel:
     def __init__(self, starting_balance=100, bet_size=10):
         self.balance = starting_balance
@@ -11,7 +8,8 @@ class RouletteWheel:
         self.bet_size = bet_size
 
     def spin(self):
-        if random.randint(1, 1000) <= 474:
+        random_num = random.randint(1, 1000)
+        if random_num <= 474: # 474 to simulate house edge
             self.balance += self.bet_size
         else:
             self.balance -= self.bet_size
@@ -21,24 +19,26 @@ class RouletteWheel:
 
 # Simulation settings
 max_rounds = 100
-simulations_per_point = 10000
+simulations_per_point: int = 100
 profitability_by_round = []
 
 for rounds in range(1, max_rounds + 1):
-    profitable_count = 0
+    wheel_bal_av: float = 0.0
 
     for _ in range(simulations_per_point):
         wheel = RouletteWheel()
         for _ in range(rounds):
             wheel.spin()
         if wheel.get_is_profitable():
-            profitable_count += 1
+            wheel_bal_av += wheel.balance
 
-    profitability = profitable_count / simulations_per_point
+    profitability = wheel_bal_av / simulations_per_point
     profitability_by_round.append(profitability)
 
+
+
 # Plot
-plt.figure(figsize=(12, 6))
+plt.plot(figsize=(12, 6))
 plt.plot(range(1, max_rounds + 1), profitability_by_round)
 plt.title("Probability of Profit vs. Number of Games Played")
 plt.xlabel("Number of Rounds Played")
