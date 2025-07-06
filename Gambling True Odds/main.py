@@ -32,7 +32,7 @@ for rounds in range(1, max_rounds + 1):
         if wheel.get_is_profitable():
             wheel_bal_av += wheel.balance
 
-    profitability = wheel_bal_av / simulations_per_point
+    profitability = wheel_bal_av
     profitability_by_round.append(profitability)
 
 
