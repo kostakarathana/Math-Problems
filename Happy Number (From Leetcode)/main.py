@@ -41,7 +41,7 @@ def get_is_happy(num: int) -> bool:
 
 if __name__ == "__main__":
     results: list[int] = []
-    for i in range(0,1000):
+    for i in range(0,100):
         if get_is_happy(i) == True:
             results.append(i)
 
