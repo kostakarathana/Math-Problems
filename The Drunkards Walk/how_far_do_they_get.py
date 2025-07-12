@@ -10,8 +10,8 @@ def get_random_shift():
 final_distances_from_origin: list[float] = []
 
 # Generate walk
-for i in range(10000):
-    num_steps = 1000
+for i in range(1000):
+    num_steps = 10000
     x, y = [0], [0]
     for _ in range(num_steps):
         dx, dy = get_random_shift()
@@ -21,5 +21,6 @@ for i in range(10000):
     final_distances_from_origin.append(math.sqrt(x[-1]**2 + y[-1]**2))
 
 
-print(len([d for d in final_distances_from_origin if d <= 10]))
+plt.hist(final_distances_from_origin)
+plt.show()
 

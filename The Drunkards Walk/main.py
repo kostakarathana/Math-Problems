@@ -7,7 +7,7 @@ def get_random_shift():
     return [math.cos(angle), math.sin(angle)]
 
 # Generate walk
-num_steps = 100
+num_steps = 10000
 x, y = [0], [0]
 for _ in range(num_steps):
     dx, dy = get_random_shift()
