@@ -47,10 +47,10 @@ class DrunkShooter:
 
 if __name__ == "__main__":
     shooter = DrunkShooter()
-    shots_taken = 100000
+    shots_taken = 500000
 
     for i in range(shots_taken):
-        shooter.take_shot_centroid()
+        shooter.take_shot_on_last_hole()
     
     x = [x[0] for x in shooter.target_record]
     y = [y[1] for y in shooter.target_record]
