@@ -13,8 +13,8 @@ class Highway:
         self.speed_m_s = self.speed_limit * 1000 / 3600
 
 
-        self.braking_distance = 0.00577381*self.speed_limit**2 + 0.385119*self.speed_limit + 1.23214 # dry conservative
-        # braking_distance = 0.00791667*self.speed_limit**2 + 0.430357*self.speed_limit - 0.0892857 # wet conservative
+        # self.braking_distance = 0.00577381*self.speed_limit**2 + 0.385119*self.speed_limit + 1.23214 # dry conservative
+        self.braking_distance = 0.00791667*self.speed_limit**2 + 0.430357*self.speed_limit - 0.0892857 # wet conservative
         # self.braking_distance = self.speed_m_s*2 # "two second between" rule of thumb
         # braking_distance = speed_m_s*3 # "three second between" rule of thumb
 
@@ -46,7 +46,7 @@ class Highway:
 
  
 if __name__ == "__main__":
-    speeds = [v for v in range(10, 151, 10)]
+    speeds = [v for v in range(10, 501, 10)]
     cars: list[int] = []
     safety: list[float] = []
     braking_distances: list[float] = []
@@ -55,7 +55,7 @@ if __name__ == "__main__":
         hw = Highway(speed_limit=v)
         cars.append(hw.calculate_max_cars(1))
         safety.append(hw.get_safety_rating())
-        braking_distances.append(hw.get_braking_distance()/hw.speed_m_s)
+        braking_distances.append(hw.get_braking_distance())
     
     print(braking_distances)
 
