@@ -14,7 +14,8 @@ class Highway:
 
 
         # self.braking_distance = 0.00577381*self.speed_limit**2 + 0.385119*self.speed_limit + 1.23214 # dry conservative
-        self.braking_distance = 0.00791667*self.speed_limit**2 + 0.430357*self.speed_limit - 0.0892857 # wet conservative
+        # self.braking_distance = 0.00791667*self.speed_limit**2 + 0.430357*self.speed_limit - 0.0892857 # wet conservative
+        self.braking_distance = 0.0022*self.speed_limit**2 + 0.15*self.speed_limit + 1.5 # dangerous braking speed
         # self.braking_distance = self.speed_m_s*2 # "two second between" rule of thumb
         # braking_distance = speed_m_s*3 # "three second between" rule of thumb
 
