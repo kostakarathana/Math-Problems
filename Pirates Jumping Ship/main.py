@@ -1,7 +1,7 @@
 import random as r
 
 class Game:
-    def __init__(self, boats: int =7) -> None:
+    def __init__(self, boats: int = 7) -> None:
         self.boats = boats
         self.boat_choices = [i for i in range(1,self.boats+1)]
         self.game_over = False
@@ -27,12 +27,12 @@ class Game:
         self.boats -= 1
 
 if __name__ == "__main__":
-    simulations = 100000
+    simulations = 1000000
     number_of_single_lefts = 0
 
 
     for i in range(simulations):
-        game = Game(10)
+        game = Game(20)
         while not game.game_over:
             game.jump()
         if game.record.count("L") == 1:
