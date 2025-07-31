@@ -23,7 +23,6 @@ class Game:
             self.record.append("R")
         else:
             self.record.append("L")
-
         self.boats -= 1
 
 if __name__ == "__main__":
