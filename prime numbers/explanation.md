@@ -4,8 +4,9 @@ Getting primes up to n
 Three methods were tested for getting primes up to n:
 
 - Brute force (test whether each num up to n is divisible by a number preceding it other than 1 or itself)
-- Optimised (same as brute force, but breaks instantly if a factor is found and only looks up to root(i) for searching for factors of the ith number)
+- Optimised (similar as brute force, but breaks instantly if a factor is found and only looks up to root(i) for searching for factors of the ith number)
 - Sieve of Eratosthenes (much faster method that dynamically removes values from a list of 2->n based on whether they are mutliples of numbers 2->i, where i**2 is >= n)
+
 
 Results (testing on n = 1000, 2000, 3000 .... 10000)
 
