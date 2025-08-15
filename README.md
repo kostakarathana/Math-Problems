@@ -2,5 +2,4 @@
 
 ## What is this?
 
-This is just a public repository where I tinker around with smaller projects or try and code solutions to settle arguments, find solutions to class problems, or really anything. It's fairly disorganised, I just like to keep a running record of my more random code. It's also encouraging to look at some of my past code and see how far I have come!
-
+This is a repo where I just mess around with random things, not necessarily just math problems either. There's not much organisation to it, rather than just naming each mini-project. I like to see how I progress with my code, and it's cool to look back on some of my past coding! I don't do anything serious within these files, but rather tinker with random ideas/cool problems I see online. 
