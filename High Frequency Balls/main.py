@@ -62,5 +62,14 @@ def plot_and_show_frequencies(frequencies):
     plt.tight_layout()
     plt.show()
 
+def get_max_min_difference(frequencies):
+    return max
+
 if __name__ == "__main__":
-    plot_and_show_frequencies(simulate_gold_lotto())
+    data = simulate_gold_lotto()
+    maxmin = get_max_min_difference(data)
+    plot_and_show_frequencies(data)
+
+
+
+
