@@ -20,9 +20,6 @@ class Game:
             self.game_over = True
             return
 
-
-
-
 if __name__ == "__main__":
 
     results = []
