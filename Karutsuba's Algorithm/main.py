@@ -2,7 +2,7 @@
 def karatsuba(x: int, y: int) -> int:
     # base case, small numbers:
     if x < 10 or y < 10:
-        return x * y
+        return x * y # small enough to multiply without worry of n^2 theoretically
 
     # calculate size of numbers
     n = max(len(str(x)), len(str(y)))
