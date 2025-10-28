@@ -23,23 +23,24 @@ import time
 # ------------------------
 # Parameters (tweakable)
 # ------------------------
-N = 256           # grid size (NxN)
-Du, Dv = 0.20, 0.1  # diffusion rates (u diffuses faster than v)
-F, k = 0.02, 0.04  # feed and kill rates -> tends toward stripes ("zebra")
-dt = 15.0             # time step
-steps_per_frame = 10 # how many PDE steps between screen updates
-seed_noise = 0.02    # random noise amplitude in initial condition
 
-# ------------------------
+
+# ------------------------N = 256           # grid size (NxN)
+# Du, Dv = 0.20, 0.1  # diffusion rates (u diffuses faster than v)
+# F, k = 0.02, 0.04  # feed and kill rates -> tends toward stripes ("zebra")
+# dt = 15.0             # time step
+# steps_per_frame = 10 # how many PDE steps between screen updates
+# seed_noise = 0.02    # random noise amplitude in initial condition
 # Helpers
 # ------------------------
 def laplacian(z: np.ndarray) -> np.ndarray:
     """Periodic Laplacian via 5-point stencil with wrap-around (torus)."""
     return (
-        -4.0 * z
-        + np.roll(z, 1, 0) + np.roll(z, -1, 0)
-        + np.roll(z, 1, 1) + np.roll(z, -1, 1)
+            -4.0 * z
+            + np.roll(z, 1, 0) + np.roll(z, -1, 0)
+            + np.roll(z, 1, 1) + np.roll(z, -1, 1)
     )
+
 
 def initialize(N: int, noise: float) -> tuple[np.ndarray, np.ndarray]:
     """Start near the homogeneous fixed point with a noisy perturbation."""
