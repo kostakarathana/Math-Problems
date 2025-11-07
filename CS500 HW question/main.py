@@ -22,18 +22,38 @@ Each operation should run in expected O(log n) time, where n is the number of el
 in the data structure
 '''
 
+import heapq
+
 class Data:
     def __init__(self) -> None:
-        self.content = []
+        # max-heap via negatives for the lower half
+        self.low = []   # stores negatives
+        # min-heap for the upper half
+        self.high = []  # stores positives
 
-    def insert(self, val) -> None:
-        if len(self.content) == 0:
-            self.content.append(val)
+    def insert(self, x) -> None:
+        if not self.low:
+            heapq.heappush(self.low, -x)
+            return
 
-        mid = len(self.content) // 2
+        # Decide which heap gets x
+        if x <= -self.low[0]:
+            heapq.heappush(self.low, -x)
+        else:
+            heapq.heappush(self.high, x)
 
-
+        # Rebalance so len(low) == len(high) or len(low) == len(high)+1
+        if len(self.low) < len(self.high):
+            # move one from high -> low
+            moved = heapq.heappop(self.high)
+            heapq.heappush(self.low, -moved)
+        elif len(self.low) > len(self.high) + 1:
+            # move one from low -> high
+            moved = -heapq.heappop(self.low)
+            heapq.heappush(self.high, moved)
 
     def find_median(self):
-        pass
-
+        if not self.low:
+            raise IndexError("No elements")
+        # If even count, we return the smaller of the two middles -> top of low
+        return -self.low[0]
