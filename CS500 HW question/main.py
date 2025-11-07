@@ -23,8 +23,9 @@ in the data structure
 '''
 
 import heapq
+import random
 
-class Data:
+class Data1:
     def __init__(self) -> None:
         # max-heap via negatives for the lower half
         self.low = []   # stores negatives
@@ -57,3 +58,71 @@ class Data:
             raise IndexError("No elements")
         # If even count, we return the smaller of the two middles -> top of low
         return -self.low[0]
+
+
+class _Node:
+    __slots__ = ("key", "prio", "left", "right", "size")
+    def __init__(self, key):
+        self.key = key
+        self.prio = random.random()
+        self.left = None
+        self.right = None
+        self.size = 1
+
+def _sz(t):
+    return t.size if t else 0
+
+def _pull(t):
+    if t:
+        t.size = 1 + _sz(t.left) + _sz(t.right)
+    return t
+
+def _rotate_right(t):
+    # t has left child; bring it up
+    x = t.left
+    t.left = x.right
+    x.right = _pull(t)
+    return _pull(x)
+
+def _rotate_left(t):
+    # t has right child; bring it up
+    x = t.right
+    t.right = x.left
+    x.left = _pull(t)
+    return _pull(x)
+
+def _insert(t, key):
+    if not t:
+        return _Node(key)
+    if key < t.key:
+        t.left = _insert(t.left, key)
+        if t.left.prio < t.prio:
+            t = _rotate_right(t)
+    else:
+        t.right = _insert(t.right, key)
+        if t.right.prio < t.prio:
+            t = _rotate_left(t)
+    return _pull(t)
+
+def _kth(t, k):
+    # 1-indexed: k in [1, _sz(t)]
+    if not t or k < 1 or k > _sz(t):
+        raise IndexError("k out of range")
+    left_size = _sz(t.left)
+    if k == left_size + 1:
+        return t.key
+    elif k <= left_size:
+        return _kth(t.left, k)
+    else:
+        return _kth(t.right, k - left_size - 1)
+
+class Data2:
+    def __init__(self) -> None:
+        self.root = None
+
+    def insert(self, x) -> None:
+        # assumes distinct keys; if duplicates possible, add a count field
+        self.root = _insert(self.root, x)
+
+    def find_kth_element(self, k: int):
+        return _kth(self.root, k)
