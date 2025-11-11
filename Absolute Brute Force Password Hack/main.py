@@ -29,4 +29,4 @@ def crack_password(real_password):
 
 
 # Example usage:
-crack_password("ajfbe")
+crack_password("password")
